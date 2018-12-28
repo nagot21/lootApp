@@ -11,15 +11,6 @@ interface MvpView {
 
     fun showToast(@StringRes resId: Int)
 
-    fun showSnackbar(message: String?, viewResId: Int)
-
-    fun showUndoSnackbar(itemName: String, viewResId: Int,
-                         restoreItem: () -> Unit, deleteItem: () -> Unit)
-
-    fun showSnackbar(@StringRes resId: Int)
-
-    fun showSnackbar(@StringRes resId: Int, viewResId: Int)
-
     fun hideKeyboard()
 
     fun getBaseActivity(): BaseActivity
