@@ -2,8 +2,6 @@ package com.nagot.lootapp.di.modules;
 
 import android.support.v7.app.AppCompatActivity;
 
-import com.nagot.lootapp.ui.base.BaseFragment;
-
 import dagger.Module;
 import dagger.Provides;
 import io.reactivex.disposables.CompositeDisposable;
@@ -12,15 +10,9 @@ import io.reactivex.disposables.CompositeDisposable;
 public class ActivityModule {
 
     private AppCompatActivity mActivity;
-    private BaseFragment mBaseFragment;
 
     public ActivityModule(AppCompatActivity activity) {
         this.mActivity = activity;
-    }
-
-    public ActivityModule(AppCompatActivity activity, BaseFragment baseFragment) {
-        this.mActivity = activity;
-        this.mBaseFragment = baseFragment;
     }
 
     @Provides

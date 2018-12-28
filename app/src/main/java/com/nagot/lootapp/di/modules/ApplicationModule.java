@@ -28,39 +28,15 @@ public class ApplicationModule {
         return appContext;
     }
 
-    /*@Provides
-    @Singleton
-    String provideDatabaseName() {
-        return databaseName;
-    }
-
     @Provides
     @Singleton
-    Database provideDatabase(Context context, String databaseName) {
-        return new DbOpenHelper(context, databaseName).getWritableDb();
-    }
-
-    @Provides
-    @Singleton
-    DaoSession provideDaoSession(Database database) {
-        return new DaoMaster(database).newSession();
-    }
-
-    @Provides
-    @Singleton
-    DbHelper provideAppDbHelper(DaoSession daoSession){
-        return new AppDbHelper(daoSession);
-    }*/
-
-    @Provides
-    @Singleton
-    SharedPrefsHelper provideAppSharedPrefsHelper(){
+    SharedPrefsHelper provideAppSharedPrefsHelper() {
         return new AppSharedPrefsHelper(appContext);
     }
 
     @Provides
     @Singleton
-    DataManager provideDataManager(SharedPrefsHelper sharedPrefsHelper){
+    DataManager provideDataManager(SharedPrefsHelper sharedPrefsHelper) {
         return new AppDataManager(sharedPrefsHelper);
     }
 }
