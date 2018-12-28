@@ -18,7 +18,6 @@ import com.nagot.lootapp.utils.KeyboardUtils
  */
 abstract class BaseActivity: AppCompatActivity(), MvpView {
 
-    /** Activate back when adding Dagger 2*/
     private lateinit var mActivityComponent: ActivityComponent
 
     override fun onCreate(savedInstanceState: Bundle?) {
