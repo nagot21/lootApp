@@ -7,20 +7,18 @@ import android.view.View
 import android.view.ViewGroup
 import com.nagot.lootapp.R
 import com.nagot.lootapp.data.network.retrofit.dto.User
-import com.nagot.lootapp.data.network.retrofit.dto.UsersListResponse
 import kotlinx.android.synthetic.main.item_list_adapter.view.*
 
 class UserListAdapter :
         RecyclerView.Adapter<UserListAdapter.ListFragmentViewHolder>() {
 
     private lateinit var context: Context
-    //var callBack: ((destFragment: String, pokemon: Pokemon) -> Unit)? = null
+    //private var mUserList: MutableList<User> = mutableListOf()
+    private var mUserList: MutableList<User> = mutableListOf()
+    //private lateinit var mUserList: List<User>
 
-    //private var mUserListResponse: MutableList<User> = mutableListOf()
-    private lateinit var mUserListResponse: UsersListResponse
-
-    fun setUserList(userListResponse: UsersListResponse) {
-        mUserListResponse = userListResponse
+    fun setUserList(userList: MutableList<User>) {
+        mUserList = userList
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ListFragmentViewHolder {
@@ -31,11 +29,11 @@ class UserListAdapter :
     }
 
     override fun getItemCount(): Int {
-        return mUserListResponse.usersList.size
+        return mUserList.size
     }
 
     override fun onBindViewHolder(holder: ListFragmentViewHolder, position: Int) {
-        holder.onBind(mUserListResponse.usersList[position])
+        holder.onBind(mUserList[position])
     }
 
     inner class ListFragmentViewHolder(itemView: View) :

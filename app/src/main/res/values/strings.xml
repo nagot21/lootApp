@@ -6,7 +6,7 @@
     <!--App Message-->
     <string name="api_retry_error">Please retry</string>
     <string name="api_default_error">Something wrong happened</string>
-    <string name="error_occurred">An error has occurred</string>
+    <string name="error_occurred">An error has occurred. Please try again</string>
     <string name="connection_error">Internet connection lost</string>
     <string name="item_deleted">%1$s has been deleted</string>
     <string name="undo">Undo</string>

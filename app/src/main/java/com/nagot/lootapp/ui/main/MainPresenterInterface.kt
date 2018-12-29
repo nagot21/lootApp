@@ -4,5 +4,5 @@ import com.nagot.lootapp.ui.base.MvpPresenter
 
 interface MainPresenterInterface<V: MainViewInterface>: MvpPresenter<V> {
 
-    fun getUsersList()
+    fun getUserList()
 }

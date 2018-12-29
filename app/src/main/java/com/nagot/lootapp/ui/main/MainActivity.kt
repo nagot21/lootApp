@@ -1,11 +1,12 @@
 package com.nagot.lootapp.ui.main
 
 import android.support.v7.widget.DefaultItemAnimator
+import android.support.v7.widget.DividerItemDecoration
 import android.support.v7.widget.LinearLayoutManager
 import android.view.View
 import com.nagot.lootapp.ui.base.BaseActivity
 import com.nagot.lootapp.R
-import com.nagot.lootapp.data.network.retrofit.dto.UsersListResponse
+import com.nagot.lootapp.data.network.retrofit.dto.User
 import kotlinx.android.synthetic.main.activity_main.*
 import javax.inject.Inject
 
@@ -23,10 +24,9 @@ class MainActivity : BaseActivity(), MainViewInterface {
             val mLayoutManager = LinearLayoutManager(this)
             main_recycler_view.layoutManager = mLayoutManager
             main_recycler_view.itemAnimator = DefaultItemAnimator()
+            main_recycler_view.addItemDecoration(DividerItemDecoration(this,
+                    DividerItemDecoration.VERTICAL))
             main_recycler_view.adapter = mAdapter
-
-            /*ItemTouchHelper(itemTouchHelperCallback)
-                    .attachToRecyclerView(pokemonRecyclerView)*/
 
         }
     }
@@ -38,6 +38,8 @@ class MainActivity : BaseActivity(), MainViewInterface {
         prepareRecyclerView()
 
         mPresenter.onAttach(this)
+
+        mPresenter.getUserList()
     }
 
     override fun getActivityLayout(): Int {
@@ -60,9 +62,17 @@ class MainActivity : BaseActivity(), MainViewInterface {
         main_no_connection_tv.visibility = View.GONE
     }
 
-    override fun loadUsersToAdapter(usersListResponse: UsersListResponse) {
+    override fun loadUsersToAdapter(userList: MutableList<User>) {
         hideProgressBar()
 
-        mAdapter.setUserList(usersListResponse)
+        mAdapter.setUserList(userList)
+
+        mAdapter.notifyDataSetChanged()
+    }
+
+    override fun showErrorMessage() {
+        hideProgressBar()
+
+        showToast(R.string.error_occurred)
     }
 }

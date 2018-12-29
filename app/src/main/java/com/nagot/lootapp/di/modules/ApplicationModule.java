@@ -5,8 +5,9 @@ import android.support.annotation.NonNull;
 
 import com.nagot.lootapp.data.AppDataManager;
 import com.nagot.lootapp.data.DataManager;
-import com.nagot.lootapp.data.sharedprefs.AppSharedPrefsHelper;
-import com.nagot.lootapp.data.sharedprefs.SharedPrefsHelper;
+import com.nagot.lootapp.data.network.AppNetworkManager;
+import com.nagot.lootapp.data.network.NetworkManager;
+import com.nagot.lootapp.data.network.retrofit.RetrofitInitializer;
 
 import javax.inject.Singleton;
 
@@ -30,13 +31,19 @@ public class ApplicationModule {
 
     @Provides
     @Singleton
-    SharedPrefsHelper provideAppSharedPrefsHelper() {
-        return new AppSharedPrefsHelper(appContext);
+    RetrofitInitializer provideRetrofitInitializer() {
+        return new RetrofitInitializer();
     }
 
     @Provides
     @Singleton
-    DataManager provideDataManager(SharedPrefsHelper sharedPrefsHelper) {
-        return new AppDataManager(sharedPrefsHelper);
+    NetworkManager provideAppSharedPrefsHelper() {
+        return new AppNetworkManager();
+    }
+
+    @Provides
+    @Singleton
+    DataManager provideDataManager(NetworkManager networkManager) {
+        return new AppDataManager(networkManager);
     }
 }
