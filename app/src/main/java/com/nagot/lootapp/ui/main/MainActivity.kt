@@ -6,9 +6,9 @@ import android.support.v7.widget.LinearLayoutManager
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
-import com.nagot.lootapp.ui.base.BaseActivity
 import com.nagot.lootapp.R
 import com.nagot.lootapp.data.network.retrofit.dto.User
+import com.nagot.lootapp.ui.base.BaseActivity
 import kotlinx.android.synthetic.main.activity_main.*
 import javax.inject.Inject
 
@@ -23,11 +23,16 @@ class MainActivity : BaseActivity(), MainViewInterface {
     private fun prepareRecyclerView() {
 
         if (main_recycler_view.layoutManager == null) {
+
             val mLayoutManager = LinearLayoutManager(this)
+
             main_recycler_view.layoutManager = mLayoutManager
+
             main_recycler_view.itemAnimator = DefaultItemAnimator()
+
             main_recycler_view.addItemDecoration(DividerItemDecoration(this,
                     DividerItemDecoration.VERTICAL))
+
             main_recycler_view.adapter = mAdapter
 
         }
@@ -35,13 +40,15 @@ class MainActivity : BaseActivity(), MainViewInterface {
 
     private fun refreshList(){
         hideNoConnection()
+
         showProgressBar()
-        showRecyclerView()
+
+        mAdapter.clearList()
+
         mPresenter.getUserList()
     }
 
     override fun setUp() {
-
         getActivityComponent().inject(this)
 
         prepareRecyclerView()
@@ -57,6 +64,7 @@ class MainActivity : BaseActivity(), MainViewInterface {
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         menuInflater.inflate(R.menu.menu_main, menu)
+
         return true
     }
 
@@ -80,21 +88,14 @@ class MainActivity : BaseActivity(), MainViewInterface {
 
     override fun showNoConnection() {
         hideProgressBar()
-        hideRecyclerView()
+
+        mAdapter.clearList()
+
         main_no_connection_tv.visibility = View.VISIBLE
     }
 
     override fun hideNoConnection() {
         main_no_connection_tv.visibility = View.GONE
-    }
-
-    override fun showRecyclerView() {
-        main_recycler_view.visibility = View.VISIBLE
-    }
-
-    override fun hideRecyclerView() {
-        mAdapter.clearList()
-        main_recycler_view.visibility = View.GONE
     }
 
     override fun loadUsersToAdapter(userList: MutableList<User>) {

@@ -38,8 +38,6 @@ abstract class BaseActivity: AppCompatActivity(), MvpView {
         return mActivityComponent
     }
 
-    fun getActionToolbar() = supportActionBar
-
     override fun showToast(message: String?) {
         val toast = Toast.makeText(this, message ?: getText(R.string.error_occurred),
                 Toast.LENGTH_LONG)

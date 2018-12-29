@@ -13,10 +13,6 @@ interface MainViewInterface: MvpView {
 
     fun hideNoConnection()
 
-    fun showRecyclerView()
-
-    fun hideRecyclerView()
-
     fun loadUsersToAdapter(userList: MutableList<User>)
 
     fun showErrorMessage()

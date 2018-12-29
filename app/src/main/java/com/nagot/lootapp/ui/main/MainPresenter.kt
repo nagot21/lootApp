@@ -17,20 +17,23 @@ class MainPresenter<V : MainViewInterface>
     private fun isInternetAvailable() = ConnectionUtil
             .isInternetAvailable(getMvpView()?.getBaseActivity()!!.baseContext)
 
-    override fun getUserList() {
+    private fun getUserListFromApi() {
+        getCompositeDisposable().add(getDataManager().getUsers(mRetrofitInitializer)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe({ userList ->
+                    if (userList.isNotEmpty()) {
+                        getMvpView()?.loadUsersToAdapter(userList)
+                    } else {
+                        getMvpView()?.showErrorMessage()
+                    }
+                },
+                        { it.printStackTrace() }))
+    }
 
+    override fun getUserList() {
         if (isInternetAvailable()) {
-            getCompositeDisposable().add(getDataManager().getUsers(mRetrofitInitializer)
-                    .subscribeOn(Schedulers.io())
-                    .observeOn(AndroidSchedulers.mainThread())
-                    .subscribe({
-                        if (it.isNotEmpty()) {
-                            getMvpView()?.loadUsersToAdapter(it)
-                        } else {
-                            getMvpView()?.showErrorMessage()
-                        }
-                    },
-                            { it.printStackTrace() }))
+            getUserListFromApi()
         } else {
             getMvpView()?.showNoConnection()
         }
