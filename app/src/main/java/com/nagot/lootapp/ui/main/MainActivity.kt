@@ -3,6 +3,8 @@ package com.nagot.lootapp.ui.main
 import android.support.v7.widget.DefaultItemAnimator
 import android.support.v7.widget.DividerItemDecoration
 import android.support.v7.widget.LinearLayoutManager
+import android.view.Menu
+import android.view.MenuItem
 import android.view.View
 import com.nagot.lootapp.ui.base.BaseActivity
 import com.nagot.lootapp.R
@@ -31,6 +33,13 @@ class MainActivity : BaseActivity(), MainViewInterface {
         }
     }
 
+    private fun refreshList(){
+        hideNoConnection()
+        showProgressBar()
+        showRecyclerView()
+        mPresenter.getUserList()
+    }
+
     override fun setUp() {
 
         getActivityComponent().inject(this)
@@ -46,6 +55,21 @@ class MainActivity : BaseActivity(), MainViewInterface {
         return R.layout.activity_main
     }
 
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.menu_main, menu)
+        return true
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem?): Boolean {
+        when(item?.itemId) {
+            R.id.menu_reset -> {
+                refreshList()
+            }
+        }
+
+        return super.onOptionsItemSelected(item)
+    }
+
     override fun showProgressBar() {
         main_progress_bar.visibility = View.VISIBLE
     }
@@ -56,11 +80,21 @@ class MainActivity : BaseActivity(), MainViewInterface {
 
     override fun showNoConnection() {
         hideProgressBar()
+        hideRecyclerView()
         main_no_connection_tv.visibility = View.VISIBLE
     }
 
     override fun hideNoConnection() {
         main_no_connection_tv.visibility = View.GONE
+    }
+
+    override fun showRecyclerView() {
+        main_recycler_view.visibility = View.VISIBLE
+    }
+
+    override fun hideRecyclerView() {
+        mAdapter.clearList()
+        main_recycler_view.visibility = View.GONE
     }
 
     override fun loadUsersToAdapter(userList: MutableList<User>) {

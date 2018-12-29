@@ -13,12 +13,15 @@ class UserListAdapter :
         RecyclerView.Adapter<UserListAdapter.ListFragmentViewHolder>() {
 
     private lateinit var context: Context
-    //private var mUserList: MutableList<User> = mutableListOf()
     private var mUserList: MutableList<User> = mutableListOf()
-    //private lateinit var mUserList: List<User>
 
     fun setUserList(userList: MutableList<User>) {
         mUserList = userList
+    }
+
+    fun clearList(){
+        mUserList.clear()
+        notifyDataSetChanged()
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ListFragmentViewHolder {
