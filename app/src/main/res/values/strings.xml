@@ -1,5 +1,7 @@
 <resources>
     <string name="app_name">LootApp</string>
+    <string name="no_connection">Please check your connection and try again</string>
+    <string name="adapter_item_place_holder_name">John Doe</string>
 
     <!--App Message-->
     <string name="api_retry_error">Please retry</string>

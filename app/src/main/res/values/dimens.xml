@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <dimen name="list_padding">10dp</dimen>
+    <dimen name="no_connection_text_size">18sp</dimen>
+    <dimen name="adapter_user_name_tv_text_size">18sp</dimen>
+    <dimen name="adapter_user_name_tv_padding">20dp</dimen>
+
+</resources>
