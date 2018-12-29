@@ -55,6 +55,7 @@ class MainActivity : BaseActivity(), MainViewInterface {
     }
 
     override fun showNoConnection() {
+        hideProgressBar()
         main_no_connection_tv.visibility = View.VISIBLE
     }
 
