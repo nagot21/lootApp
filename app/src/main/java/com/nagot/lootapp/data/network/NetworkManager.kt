@@ -1,6 +1,5 @@
 package com.nagot.lootapp.data.network
 
-import com.nagot.lootapp.data.network.retrofit.RetrofitInitializer
 import com.nagot.lootapp.data.network.retrofit.dto.User
 import io.reactivex.Single
 
@@ -9,5 +8,5 @@ import io.reactivex.Single
  */
 interface NetworkManager {
 
-    fun getUsers(retrofitInitializer: RetrofitInitializer): Single<MutableList<User>>
+    fun getUsers(): Single<MutableList<User>>
 }

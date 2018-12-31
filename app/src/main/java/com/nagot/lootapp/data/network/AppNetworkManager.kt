@@ -7,9 +7,9 @@ import io.reactivex.Single
 /**
  *   Created by IanNagot on 28/12/2018
  */
-class AppNetworkManager: NetworkManager {
+class AppNetworkManager(private val mRetrofitInitializer: RetrofitInitializer): NetworkManager {
 
-    override fun getUsers(retrofitInitializer: RetrofitInitializer): Single<MutableList<User>> {
-        return retrofitInitializer.getUsersApiService().getUsers()
+    override fun getUsers(): Single<MutableList<User>> {
+        return mRetrofitInitializer.getUsersApiService().getUsers()
     }
 }

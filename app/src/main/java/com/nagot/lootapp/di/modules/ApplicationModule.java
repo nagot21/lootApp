@@ -37,8 +37,8 @@ public class ApplicationModule {
 
     @Provides
     @Singleton
-    NetworkManager provideAppSharedPrefsHelper() {
-        return new AppNetworkManager();
+    NetworkManager provideAppNetworkManager(RetrofitInitializer retrofitInitializer) {
+        return new AppNetworkManager(retrofitInitializer);
     }
 
     @Provides

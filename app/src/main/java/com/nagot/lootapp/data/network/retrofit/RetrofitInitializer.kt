@@ -20,9 +20,9 @@ class RetrofitInitializer {
 
         val client = OkHttpClient.Builder()
                 .addInterceptor(interceptor)
-                .connectTimeout(1, TimeUnit.SECONDS)
+                .connectTimeout(5, TimeUnit.SECONDS)
                 .retryOnConnectionFailure(true)
-                .readTimeout(1, TimeUnit.SECONDS)
+                .readTimeout(5, TimeUnit.SECONDS)
                 .connectionPool(ConnectionPool(0,
                         1, TimeUnit.NANOSECONDS))
 

@@ -1,7 +1,6 @@
 package com.nagot.lootapp.data
 
 import com.nagot.lootapp.data.network.NetworkManager
-import com.nagot.lootapp.data.network.retrofit.RetrofitInitializer
 import com.nagot.lootapp.data.network.retrofit.dto.User
 import io.reactivex.Single
 
@@ -10,7 +9,7 @@ import io.reactivex.Single
  */
 class AppDataManager(private val mNetworkManager: NetworkManager): DataManager {
 
-    override fun getUsers(retrofitInitializer: RetrofitInitializer): Single<MutableList<User>> {
-        return mNetworkManager.getUsers(retrofitInitializer)
+    override fun getUsers(): Single<MutableList<User>> {
+        return mNetworkManager.getUsers()
     }
 }
